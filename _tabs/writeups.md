@@ -15,7 +15,7 @@ Welcome to the **DFIR & Threat Hunting Write-Ups** repository. This index catego
   <span class="badge bg-dark border fs-6 p-2">Platform: CyberDefenders</span>
 </div>
 
-## 🛡️ CyberDefenders Challenges
+## CyberDefenders Challenges
 
 {% assign writeup_posts = site.posts | where_exp: "item", "item.categories contains 'CyberDefenders' or item.categories contains 'Writeups'" %}
 
@@ -48,7 +48,7 @@ Welcome to the **DFIR & Threat Hunting Write-Ups** repository. This index catego
 
 ---
 
-## 📌 Filter by Category
+## Filter by Category
 
 - [Network Forensics]({{ '/categories/network-forensics/' | relative_url }})
 - [Memory Forensics]({{ '/categories/memory-forensics/' | relative_url }})

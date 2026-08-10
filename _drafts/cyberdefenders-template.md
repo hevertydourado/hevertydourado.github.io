@@ -13,7 +13,7 @@ image:
   alt: CyberDefenders [Lab Name] Write-Up
 ---
 
-## 🎯 Challenge Overview
+## Challenge Overview
 
 | Attribute | Details |
 | :--- | :--- |
@@ -25,7 +25,7 @@ image:
 
 ---
 
-## 🛠️ Tools Used
+## Tools Used
 
 - **`Tool 1`**: Brief description of how it was used (e.g., Wireshark for PCAP analysis).
 - **`Tool 2`**: Brief description (e.g., Volatility 3 for memory dump extraction).
@@ -33,7 +33,7 @@ image:
 
 ---
 
-## 🛡️ MITRE ATT&CK Mapping
+## MITRE ATT&CK Mapping
 
 | Tactic | Technique ID | Technique Name | Details / Observed Behavior |
 | :--- | :--- | :--- | :--- |
@@ -43,7 +43,7 @@ image:
 
 ---
 
-## 🚨 Indicators of Compromise (IOCs)
+## Indicators of Compromise (IOCs)
 
 | Type | Indicator / Value | Context |
 | :--- | :--- | :--- |
@@ -53,7 +53,7 @@ image:
 
 ---
 
-## 🔍 Investigation & Questions Breakdown
+## Investigation & Questions Breakdown
 
 ### Q1: What is the IP address of the compromised host?
 
@@ -83,14 +83,14 @@ tshark -r investigation.pcap -Y "http.request.method == POST"
 
 ---
 
-## 🎯 Conclusion & Key Takeaways
+## Conclusion & Key Takeaways
 
 - Summary of root cause analysis and attack vector.
 - Recommended detection rules (YARA / Sigma) or defensive mitigation controls.
 
 ---
 
-## 📚 References & Resources
+## References & Resources
 
 - [CyberDefenders Challenge Link](https://cyberdefenders.org/blueteam-ctf-challenges/)
 - [MITRE ATT&CK Matrix](https://attack.mitre.org/)

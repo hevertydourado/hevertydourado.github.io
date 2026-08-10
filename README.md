@@ -3,48 +3,81 @@
 
   # D0ur4tt0 - Cybersecurity Blog
 
-  Blog dedicado a postagens técnicas sobre segurança defensiva (Blue Team, DFIR, SOC e SIEM).
+  Technical blog focused on defensive security, incident response (DFIR), threat hunting, and security engineering.
 
   [![Live Blog](https://img.shields.io/badge/Website-blog.vigly.io-blue)](https://blog.vigly.io)
   [![GitHub](https://img.shields.io/badge/GitHub-hevertydourado-181717?logo=github)](https://github.com/hevertydourado)
 
 </div>
 
-## 📌 Sobre o Projeto
+## About the Project
 
-Este repositório contém o código-fonte do **D0ur4tt0 Cybersecurity Blog**, hospedado via GitHub Pages no endereço [blog.vigly.io](https://blog.vigly.io).
+This repository contains the source code for **D0ur4tt0 Cybersecurity Blog**, hosted on GitHub Pages at [blog.vigly.io](https://blog.vigly.io).
 
-O blog tem como objetivo compartilhar conhecimentos práticos, análises de incidentes, tutoriais e pesquisas focadas em **Segurança Defensiva / Blue Team**.
+The blog aims to share technical write-ups, incident investigations, security engineering tutorials, and research focused on **Defensive Security / Blue Team**.
 
-## 🛠️ Tecnologias Utilizadas
+---
 
-- **Jekyll**: Gerador de site estático
-- **Tema**: [Chirpy Jekyll Theme (Gem v7.6.0)](https://github.com/cotes2020/jekyll-theme-chirpy)
-- **Hospedagem**: GitHub Pages + Cloudflare DNS
-- **Linguagens/Ferramentas**: Markdown, Liquid, Sass/CSS, JavaScript
+## Tech Stack
 
-## 🚀 Executando Localmente
+- **Jekyll**: Static site generator
+- **Theme**: [Chirpy Jekyll Theme (Gem v7.6.0)](https://github.com/cotes2020/jekyll-theme-chirpy)
+- **Deployment**: GitHub Pages + Cloudflare DNS
+- **Tooling**: Markdown, Liquid, Sass/CSS, JavaScript
 
-Para rodar o blog localmente na sua máquina:
+---
 
-1. **Clonar o repositório:**
+## 📝 How to Create CyberDefenders Write-Ups
+
+To publish a new CyberDefenders or DFIR lab write-up:
+
+1. **Copy the Write-Up Template:**
+   Duplicate the template file located at `_drafts/cyberdefenders-template.md` into the `_posts/` directory.
+
+2. **Name the File using Jekyll Naming Convention:**
+   ```bash
+   _posts/YYYY-MM-DD-cyberdefenders-[lab-name].md
+   ```
+   *Example: `_posts/2026-08-10-cyberdefenders-brave.md`*
+
+3. **Fill in the Challenge Metadata & Investigation Steps:**
+   - Update front matter `title`, `description`, `tags`, and cover image path.
+   - Populate the **MITRE ATT&CK Mapping** and **Indicators of Compromise (IOCs)** tables.
+   - Fill in the step-by-step investigation and answers.
+
+4. **Commit and Push:**
+   ```bash
+   git add _posts/
+   git commit -m "docs(writeup): add CyberDefenders [Lab Name] writeup"
+   git push origin master
+   ```
+   *The post will automatically appear on the Home page and under the `/writeups/` tab.*
+
+---
+
+## Local Development
+
+To run the blog locally:
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/hevertydourado/hevertydourado.github.io.git
    cd hevertydourado.github.io
    ```
 
-2. **Instalar as dependências:**
+2. **Install dependencies:**
    ```bash
    bundle install
    ```
 
-3. **Iniciar o servidor local:**
+3. **Start local server:**
    ```bash
    bundle exec jekyll serve
    ```
-   Acesse a aplicação em `http://localhost:4000`.
+   Access the site at `http://localhost:4000`.
 
-## 📄 Licença
+---
 
-Este projeto é disponibilizado sob a licença [MIT](LICENSE).
+## License
 
+This project is licensed under the [MIT](LICENSE) License.
