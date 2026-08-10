@@ -10,10 +10,9 @@ Welcome to the **DFIR & Threat Hunting Write-Ups** repository. This index catego
 
 ---
 
-<div class="d-flex flex-wrap gap-2 mb-4">
-  <span class="badge bg-primary fs-6 p-2">Total Labs: {{ site.posts | where_exp: "item", "item.categories contains 'CyberDefenders' or item.categories contains 'Writeups'" | size }}</span>
-  <span class="badge bg-dark border fs-6 p-2">Platform: CyberDefenders</span>
-</div>
+- **Total Labs:** {{ site.posts | where_exp: "item", "item.categories contains 'CyberDefenders' or item.categories contains 'Writeups'" | size }}
+- **Primary Platform:** CyberDefenders
+- **Publish Frequency:** Weekly Walkthroughs
 
 ## CyberDefenders Challenges
 
