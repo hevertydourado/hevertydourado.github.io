@@ -1,6 +1,6 @@
 ---
-title: Como configurar HAProxy para balanço de carga no Wazuh (e habilitando HAProxy Helper HTTPS)
-description: Passo a passo completo de como configurar o HAProxy como load balancer e integrar a API do HAProxy Helper via HTTPS com o Wazuh Manager para alta disponibilidade e balanço de carga otimizado.
+title: How to Configure HAProxy for Wazuh Manager Load Balancing (with HTTPS HAProxy Helper)
+description: A complete guide on configuring HAProxy as a load balancer for a Wazuh cluster, including Dataplane API setup and HTTPS HAProxy Helper integration for high availability.
 author: D0ur4tt0
 date: 2025-01-28 20:05:00 -0300
 categories: [Wazuh, Sysadmin, Load Balancer]
@@ -10,64 +10,64 @@ math: true
 mermaid: true
 image:
   path: /assets/img/posts/haproxy-wazuh/balanco-de-carga-wazuh.webp
-  alt: Balanço de carga no Wazuh. Configurando HAProxy.
+  alt: Wazuh Load Balancing with HAProxy
 ---
 
-Em ambientes de segurança da informação, a alta disponibilidade e a escalabilidade são requisitos fundamentais para garantir a continuidade das operações e a eficiência na análise de logs. O **Wazuh**, uma plataforma open source de detecção de ameaças e monitoramento de segurança, é amplamente utilizado para proteger infraestruturas críticas. No entanto, à medida que o volume de dados e a complexidade do ambiente crescem, a necessidade de distribuir a carga de trabalho entre múltiplos servidores torna-se essencial.
+In enterprise security operations, high availability and scalability are fundamental requirements to ensure operational continuity and efficient log analysis. **Wazuh**, an open-source security monitoring and threat detection platform, is widely deployed to safeguard critical infrastructure. However, as log volume and environment complexity scale, distributing workload across multiple server nodes becomes essential.
 
-É aí que entra o **HAProxy**, uma solução robusta e altamente configurável para balanceamento de carga. Neste artigo, você aprenderá como configurar o HAProxy para distribuir o tráfego de agentes do Wazuh entre múltiplos nós, garantindo alta disponibilidade, escalabilidade e resiliência.
+That is where **HAProxy** comes in—a reliable, high-performance load balancer. In this article, you will learn how to configure HAProxy to balance agent traffic across a multi-node Wazuh cluster while maintaining resilience, scalability, and high availability.
 
 ---
 
-## Setup e Arquitetura
+## Setup and Architecture
 
-Para essa demonstração, utilizaremos a seguinte arquitetura:
+For this demonstration, we use the following setup:
 
-- **1 Servidor Amazon Linux** onde será instalado o Load Balancer (HAProxy)
+- **1 Amazon Linux Server** dedicated to the Load Balancer (HAProxy)
 - **1 Wazuh Indexer 4.10**
 - **1 Wazuh Dashboard 4.10**
-- **Cluster com 3 Wazuh Servers / Managers** 4.10 (sendo 1 master e 2 workers)
-- **3 Servidores Linux** com o Agent do Wazuh instalado (versão 4.10)
+- **3-Node Wazuh Manager Cluster** (1 Master, 2 Workers) running version 4.10
+- **3 Linux Endpoints** with Wazuh Agent 4.10 installed
 
-A arquitetura ficará configurada da seguinte forma:
+The resulting architecture is structured as follows:
 
-![Arquitetura Wazuh e HAProxy](/assets/img/posts/haproxy-wazuh/arquitetura-wazuh-haproxy.png)
-_Estrutura do Cluster Wazuh com HAProxy Load Balancer_
+![Wazuh and HAProxy Architecture](/assets/img/posts/haproxy-wazuh/arquitetura-wazuh-haproxy.png)
+_Wazuh Cluster Architecture with HAProxy Load Balancer_
 
 ---
 
-## Configuração do HAProxy
+## HAProxy Installation and Configuration
 
-Existem diversas formas de instalar o HAProxy a depender do seu sistema operacional (ou via Docker / PPA). No nosso caso, instalaremos pelo gerenciador de pacotes (`dnf`) do Amazon Linux.
+HAProxy can be installed via package managers, Docker containers, or third-party repositories. For Amazon Linux, we install it directly using `dnf`.
 
-> Todos os comandos a seguir estão sendo executados com permissões de usuário `root`.
+> All commands in this guide are executed with `root` privileges.
 
-### 1. Instalação e Habilitação
+### 1. Installation and Service Enablement
 
-Instale o HAProxy:
+Install HAProxy:
 ```bash
 dnf install haproxy -y
 ```
 
-Verifique a versão instalada:
+Verify the installed version:
 ```bash
 haproxy -v
 ```
 
-Habilite o serviço no sistema:
+Enable the service at system boot:
 ```bash
 systemctl enable haproxy
 ```
 
-### 2. Modificando o arquivo de configuração
+### 2. Configuring `haproxy.cfg`
 
-Modifique ou crie o arquivo `haproxy.cfg` em `/etc/haproxy/haproxy.cfg`:
+Edit or create `/etc/haproxy/haproxy.cfg`:
 
 ```bash
 nano /etc/haproxy/haproxy.cfg
 ```
 
-Adicione o seguinte conteúdo ao arquivo:
+Populate the configuration file with the following directives:
 
 ```nginx
 global
@@ -107,57 +107,59 @@ frontend wazuh_reporting_front
 backend wazuh_register from unnamed_defaults_1
   mode tcp
   balance leastconn
-  server master <ENDEREÇO_MANAGER_MASTER>:1515 check
-  server worker1 <ENDERECO_MANAGER_WORKER_1>:1515 check
-  server worker2 <ENDERECO_MANAGER_WORKER_2>:1515 check
+  server master <MASTER_MANAGER_IP>:1515 check
+  server worker1 <WORKER_1_MANAGER_IP>:1515 check
+  server worker2 <WORKER_2_MANAGER_IP>:1515 check
 
 backend wazuh_reporting
   mode tcp
   balance leastconn
-  server master <ENDEREÇO_MANAGER_MASTER>:1514 check
-  server worker1 <ENDERECO_MANAGER_WORKER_1>:1514 check
-  server worker2 <ENDERECO_MANAGER_WORKER_2>:1514 check
+  server master <MASTER_MANAGER_IP>:1514 check
+  server worker1 <WORKER_1_MANAGER_IP>:1514 check
+  server worker2 <WORKER_2_MANAGER_IP>:1514 check
 ```
 
-> Os parâmetros `<ENDERECO_MANAGER_[...]>` podem ser informados tanto por endereço IP quanto por FQDN/DNS.
+> The `<MASTER_MANAGER_IP>` and `<WORKER_X_MANAGER_IP>` placeholders can be configured using IP addresses or FQDNs.
 
-> **Importante:** Para que o **HAProxy Helper** funcione corretamente com o Wazuh, o algoritmo de balanceamento deve obrigatoriamente ser `leastconn`.
+> **Important:** For the **HAProxy Helper** to properly manage backend node states in Wazuh, the load balancing algorithm must be set to `leastconn`.
 
 ---
 
-## Configurando o HAProxy Helper (com HTTPS)
+## Configuring HAProxy Helper with HTTPS
 
-O HAProxy Helper utiliza a **Dataplane API** para que a comunicação entre o Wazuh Manager e o HAProxy aconteça de forma dinâmica, permitindo que o cluster faça atualizações de configuração conforme necessário.
+The HAProxy Helper relies on the **HAProxy Data Plane API** to dynamically update backend configurations and node statuses between the Wazuh Master node and HAProxy.
 
-### 1. Gerando Certificados SSL/TLS
+> ⚠️ **Security Warning:** The default `dataplaneapi.yml` example uses placeholder credentials (`user: wazuh`, `password: wazuh`) and `insecure: true`. **Never use default or weak credentials in production environments.** Generate strong, cryptographically secure secrets, restrict API network access, and enforce strict TLS certificate validation.
 
-Primeiro, gere o certificado no servidor onde o HAProxy está instalado:
+### 1. Generating TLS Certificates
 
-```bash
-openssl req -x509 -newkey rsa:4096 -keyout lb-key.pem -out lb-cert.pem -sha256 -nodes \
-  -addext "subjectAltName=IP:<IP_SERVIDOR_LOAD_BALANCER>" \
-  -subj "/C=BR/ST=SaoPaulo/O=Wazuh/CN=LoadBalancer-Internal"
-```
-*(Substitua `<IP_SERVIDOR_LOAD_BALANCER>` pelo IP real do seu Load Balancer).*
-
-Em seguida, gere o certificado no **Manager Master** do seu cluster:
+Generate the self-signed certificate on the HAProxy Load Balancer server:
 
 ```bash
 openssl req -x509 -newkey rsa:4096 -keyout lb-key.pem -out lb-cert.pem -sha256 -nodes \
-  -addext "subjectAltName=IP:<IP_SERVIDOR_MANAGER_MASTER>" \
-  -subj "/C=BR/ST=SaoPaulo/O=Wazuh/CN=Manager-Internal"
+  -addext "subjectAltName=IP:<LOAD_BALANCER_IP>" \
+  -subj "/C=US/ST=State/O=Wazuh/CN=LoadBalancer-Internal"
 ```
-*(Substitua `<IP_SERVIDOR_MANAGER_MASTER>` pelo IP do seu servidor Manager Master).*
+*(Replace `<LOAD_BALANCER_IP>` with your load balancer server IP).*
 
-### 2. Download e Configuração do Dataplane API
+Next, generate the client certificate on the **Wazuh Master Manager**:
 
-Faça o download do binário do Dataplane API:
+```bash
+openssl req -x509 -newkey rsa:4096 -keyout lb-key.pem -out lb-cert.pem -sha256 -nodes \
+  -addext "subjectAltName=IP:<MASTER_MANAGER_IP>" \
+  -subj "/C=US/ST=State/O=Wazuh/CN=Manager-Internal"
+```
+*(Replace `<MASTER_MANAGER_IP>` with your Wazuh Master server IP).*
+
+### 2. Dataplane API Download and Configuration
+
+Download and install the Data Plane API binary:
 
 ```bash
 curl -sL https://github.com/haproxytech/dataplaneapi/releases/download/v2.8.13/dataplaneapi_2.8.13_linux_x86_64.tar.gz | tar xz && cp dataplaneapi /usr/local/bin/
 ```
 
-Crie o arquivo de configuração `/etc/haproxy/dataplaneapi.yml`:
+Create `/etc/haproxy/dataplaneapi.yml`:
 
 ```yaml
 config_version: 2
@@ -172,8 +174,8 @@ dataplaneapi:
     api_port: 0
   tls:
     tls_port: 6443
-    tls_certificate: /etc/haproxy/ssl/lb-cert.pem    # caminho do seu certificado
-    tls_key: /etc/haproxy/ssl/lb-key.pem            # caminho da sua chave
+    tls_certificate: /etc/haproxy/ssl/lb-cert.pem    # Path to your SSL certificate
+    tls_key: /etc/haproxy/ssl/lb-key.pem            # Path to your private key
   scheme:
   - https
   transaction:
@@ -192,30 +194,30 @@ haproxy:
     reload_strategy: custom
 ```
 
-> Lembre-se de ajustar os caminhos de `tls_certificate`, `tls_key` e credenciais (`name` e `password`) que serão utilizadas na autenticação.
+> Adjust `tls_certificate`, `tls_key`, and the API credentials (`name` and `password`) to match your secure deployment parameters.
 
-### 3. Iniciando os Serviços e Testando
+### 3. Service Execution and API Validation
 
-Reinicie o HAProxy:
+Restart HAProxy:
 ```bash
 systemctl restart haproxy.service
 ```
 
-Inicie o Dataplane API em background:
+Run Data Plane API in the background:
 ```bash
 /usr/local/bin/dataplaneapi -f /etc/haproxy/dataplaneapi.yml &
 ```
 
-Testando a comunicação com a API:
+Test API connectivity:
 ```bash
 curl -k -X GET --user wazuh:wazuh https://localhost:6443/v2/info
 ```
 
 ---
 
-## Configurando o Wazuh Manager Master
+## Configuring the Wazuh Master Manager
 
-No servidor **Manager Master**, edite o arquivo `ossec.conf` em `/var/ossec/etc/ossec.conf` e adicione o bloco `<haproxy_helper>` dentro da tag `<cluster>`:
+On the **Wazuh Master Manager** node, edit `/var/ossec/etc/ossec.conf` and append the `<haproxy_helper>` block inside `<cluster>`:
 
 ```xml
 <cluster>
@@ -243,41 +245,41 @@ No servidor **Manager Master**, edite o arquivo `ossec.conf` em `/var/ossec/etc/
 </cluster>
 ```
 
-> **Parâmetros:**
-> - `<haproxy_address>`: IP do servidor Load Balancer (HAProxy).
-> - `<haproxy_user>` / `<haproxy_password>`: Credenciais do Dataplane API.
-> - `<haproxy_cert>`: Certificado gerado no Load Balancer e copiado para o servidor Manager.
-> - `<client_cert_key>`: Chave/Certificado gerado no próprio Manager Master.
+> **Configuration Breakdown:**
+> - `<haproxy_address>`: IP address of the HAProxy Load Balancer server.
+> - `<haproxy_user>` / `<haproxy_password>`: Credentials matching Data Plane API configuration.
+> - `<haproxy_cert>`: Load Balancer certificate copied to the Wazuh Manager.
+> - `<client_cert_key>`: Key/certificate generated on the Wazuh Master Manager.
 
-Após salvar o arquivo, reinicie o serviço do Wazuh Manager:
+Restart the Wazuh Manager service to apply changes:
 
 ```bash
 systemctl restart wazuh-manager
 ```
 
-### Validação dos Logs de Integração
+### Verifying Integration Logs
 
-Verifique os logs no Manager para confirmar o funcionamento do Helper:
+Inspect cluster log files on the Master node to verify Helper communication:
 
 ```bash
 tail -n500 /var/ossec/logs/cluster.log | grep 'HAPHelper'
 ```
 
-![Logs Cluster Wazuh HAPHelper](/assets/img/posts/haproxy-wazuh/logs-cluster-wazuh.png)
-_Validação de logs confirmando o sucesso da comunicação do HAPHelper com a API do HAProxy_
+![Wazuh HAPHelper Cluster Logs](/assets/img/posts/haproxy-wazuh/logs-cluster-wazuh.png)
+_Cluster logs confirming successful HAPHelper communication with HAProxy Data Plane API_
 
 ---
 
-## Bônus: Autostart do Dataplane API no Systemd
+## Bonus: Systemd Service for Data Plane API Autostart
 
-Para garantir que o Dataplane API inicie automaticamente caso o servidor do HAProxy seja reiniciado:
+To ensure Data Plane API starts automatically upon server reboots:
 
-1. Crie o arquivo `/etc/systemd/system/dataplaneapi.service`:
+1. Create `/etc/systemd/system/dataplaneapi.service`:
    ```bash
    sudo nano /etc/systemd/system/dataplaneapi.service
    ```
 
-2. Adicione o seguinte conteúdo:
+2. Add the following unit configuration:
    ```ini
    [Unit]
    Description=HAProxy Data Plane API
@@ -294,29 +296,29 @@ Para garantir que o Dataplane API inicie automaticamente caso o servidor do HAPr
    WantedBy=multi-user.target
    ```
 
-3. Recarregue e inicie o serviço:
+3. Reload systemd and enable the service:
    ```bash
    sudo systemctl daemon-reload
    sudo systemctl enable dataplaneapi
    sudo systemctl start dataplaneapi
    ```
 
-4. Verifique o status:
+4. Verify service status:
    ```bash
    sudo systemctl status dataplaneapi
    ```
 
 ---
 
-## Conclusão
+## Conclusion
 
-A configuração do **HAProxy** para balanceamento de carga no Wazuh habilitando o **HAProxy Helper via HTTPS** garante uma infraestrutura resiliente, escalável e de fácil manutenção. A integração entre a Dataplane API e o Wazuh Manager permite adicionar e remover nós do cluster de forma dinâmica sem interrupção na coleta de eventos.
+Configuring **HAProxy** for load balancing in a Wazuh cluster—along with HTTPS-enabled **HAProxy Helper**—delivers a resilient, scalable, and manageable security infrastructure. Integrating the Data Plane API with Wazuh Manager enables dynamic backend node management without disrupting log collection or agent reporting.
 
-Fique à vontade para deixar dúvidas ou sugestões nos comentários ou entrar em contato via LinkedIn/GitHub.
+Feel free to share feedback or reach out on LinkedIn and GitHub with any questions regarding Wazuh architecture or load balancing.
 
 ---
 
-## Referências
+## References
 
-- [Wazuh Server Cluster (HAProxy Documentation)](https://documentation.wazuh.com/)
-- [HAProxy Data Plane API Releases](https://github.com/haproxytech/dataplaneapi/releases)
+- [Wazuh Server Cluster Documentation](https://documentation.wazuh.com/)
+- [HAProxy Data Plane API GitHub Releases](https://github.com/haproxytech/dataplaneapi/releases)
