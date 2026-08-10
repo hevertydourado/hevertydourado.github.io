@@ -1,0 +1,31 @@
+{% comment %}
+  IOC Callout Container Component
+{% endcomment %}
+
+<div class="callout-ioc mb-4">
+  <div class="callout-title">
+    <i class="fas fa-bug me-1"></i> Indicators of Compromise (IOCs)
+  </div>
+  <div class="table-responsive">
+    <table class="table table-dark table-striped table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Indicator / Value</th>
+          <th>Context</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if page.iocs %}
+          {% for item in page.iocs %}
+            <tr>
+              <td class="fw-bold text-primary">{{ item.type }}</td>
+              <td><code class="highlighter-rouge">{{ item.value }}</code></td>
+              <td class="text-muted small">{{ item.context }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>

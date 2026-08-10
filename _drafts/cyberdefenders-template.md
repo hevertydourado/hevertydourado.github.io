@@ -8,6 +8,9 @@ tags: [cyberdefenders, dfir, network-forensics, memory-forensics, easy]
 pin: false
 math: true
 mermaid: true
+image:
+  path: /assets/img/default/preview.png
+  alt: CyberDefenders [Lab Name] Write-Up
 mitre_attack:
   - tactic: Initial Access
     technique_id: T1190
@@ -21,6 +24,16 @@ mitre_attack:
     technique_id: T1027
     technique_name: Obfuscated Files or Information
     details: Base64 encoded payload executed in memory
+iocs:
+  - type: IPv4 Address
+    value: 192.168.1.100
+    context: Malicious C2 Server IP
+  - type: SHA256 Hash
+    value: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    context: Dropped Web Shell Payload
+  - type: Domain
+    value: malicious-domain.com
+    context: Exfiltration Endpoint
 ---
 
 ## Challenge Overview
@@ -47,16 +60,7 @@ mitre_attack:
 
 ---
 
-<div class="callout-ioc">
-<div class="callout-title"><i class="fas fa-bug"></i> Indicators of Compromise (IOCs)</div>
-
-| Type | Indicator / Value | Context |
-| :--- | :--- | :--- |
-| **IPv4 Address** | `192.168.1.100` | Malicious C2 Server IP |
-| **SHA256 Hash** | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | Dropped Web Shell Payload |
-| **Domain** | `malicious-domain.com` | Exfiltration Endpoint |
-
-</div>
+{% include ioc-container.html %}
 
 ---
 

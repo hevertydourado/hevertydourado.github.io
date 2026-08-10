@@ -24,6 +24,16 @@ mitre_attack:
     technique_id: T1071.001
     technique_name: Web Protocols
     details: C2 beaconing over HTTP POST traffic on non-standard port
+iocs:
+  - type: IPv4 Address
+    value: 192.168.1.105
+    context: Attacker C2 Server IP
+  - type: SHA256 Hash
+    value: a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0
+    context: Malicious ASPX Web Shell
+  - type: Domain
+    value: c2-malicious-domain.com
+    context: Exfiltration Endpoint
 ---
 
 ## Challenge Overview
@@ -50,16 +60,7 @@ mitre_attack:
 
 ---
 
-<div class="callout-ioc">
-<div class="callout-title"><i class="fas fa-bug"></i> Indicators of Compromise (IOCs)</div>
-
-| Type | Indicator / Value | Context |
-| :--- | :--- | :--- |
-| **IPv4 Address** | `192.168.1.105` | Attacker C2 Server IP |
-| **SHA256 Hash** | `a1b2c3d4e5f67890123456789abcdef0123456789abcdef0123456789abcdef0` | Malicious ASPX Web Shell |
-| **Domain** | `c2-malicious-domain.com` | Exfiltration Endpoint |
-
-</div>
+{% include ioc-container.html %}
 
 ---
 
