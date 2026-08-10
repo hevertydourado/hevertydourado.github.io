@@ -44,6 +44,11 @@ social:
     # - https://www.facebook.com/username
     - https://www.linkedin.com/in/heverty
 
+avatar: /assets/img/favicons/avatar.png
+
+# Default Open Graph social sharing image fallback
+social_preview_image: /assets/img/posts/haproxy-wazuh/balanco-de-carga-wazuh.webp
+
 # Site Verification Settings
 webmaster_verifications:
   google: # fill in your Google verification code
