@@ -33,7 +33,8 @@ image:
 
 ---
 
-## MITRE ATT&CK Mapping
+<div class="callout-mitre">
+<div class="callout-title"><i class="fas fa-shield-alt"></i> MITRE ATT&CK Matrix Mapping</div>
 
 | Tactic | Technique ID | Technique Name | Details / Observed Behavior |
 | :--- | :--- | :--- | :--- |
@@ -41,15 +42,20 @@ image:
 | **Execution** | `T1059.001` | PowerShell | Obfuscated PowerShell execution via CMD child process |
 | **Defense Evasion** | `T1027` | Obfuscated Files or Information | Base64 encoded payload executed in memory |
 
+</div>
+
 ---
 
-## Indicators of Compromise (IOCs)
+<div class="callout-ioc">
+<div class="callout-title"><i class="fas fa-bug"></i> Indicators of Compromise (IOCs)</div>
 
 | Type | Indicator / Value | Context |
 | :--- | :--- | :--- |
 | **IPv4 Address** | `192.168.1.100` | Malicious C2 Server IP |
 | **SHA256 Hash** | `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855` | Dropped Web Shell Payload |
 | **Domain** | `malicious-domain.com` | Exfiltration Endpoint |
+
+</div>
 
 ---
 
