@@ -206,12 +206,6 @@ a {
         border-radius: 0.5rem;
         padding: 0.25rem 0;
 
-        /* Oculta a opção 'Sistema' do dropdown */
-        .dropdown-item[data-mode-value="system"],
-        li:nth-child(3) {
-          display: none !important;
-        }
-
         .dropdown-item {
           color: var(--sidebar-muted-color, #aaa);
           display: flex;
@@ -232,4 +226,13 @@ a {
       }
     }
   }
+}
+
+/* Global rule to hide 'Sistema' option in Chirpy v7 dropdowns */
+button[data-mode-toggle="system"],
+button[data-mode-value="system"],
+.dropdown-menu li:has(button[data-mode-toggle="system"]),
+.dropdown-menu li:has(button[data-mode-value="system"]),
+.dropdown-menu li:nth-child(3) {
+  display: none !important;
 }
