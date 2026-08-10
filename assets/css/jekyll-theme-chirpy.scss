@@ -176,40 +176,51 @@ a {
 /* Fix Chirpy v7 theme mode dropdown toggle in sidebar */
 #sidebar {
   .sidebar-bottom {
-    .dropup {
+    #mode-toggle-wrapper {
       .btn {
-        padding: 0.375rem 0.5rem;
-        color: var(--sidebar-active-color);
+        padding: 0 0.5rem;
+        color: var(--sidebar-active-color) !important;
         border: none;
         background: transparent;
         font-size: 1rem;
         box-shadow: none;
         
-        &:hover {
-          color: var(--sidebar-hover-color);
+        i {
+          font-size: 1.1rem;
+          color: var(--sidebar-active-color);
         }
 
-        i {
-          font-size: 1rem;
+        &:hover, &:focus {
+          color: var(--sidebar-hover-color) !important;
+          i {
+            color: var(--sidebar-hover-color);
+          }
         }
       }
 
       .dropdown-menu {
         font-size: 0.85rem;
-        background-color: var(--main-bg);
-        border-color: var(--main-border-color);
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        background-color: var(--sidebar-bg, #1e1e1e);
+        border: 1px solid var(--sidebar-border-color, #333);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.25rem 0;
 
         .dropdown-item {
-          color: var(--text-color);
+          color: var(--sidebar-muted-color, #aaa);
           display: flex;
           align-items: center;
           gap: 0.5rem;
           padding: 0.375rem 0.75rem;
 
+          i {
+            width: 1.25rem;
+            text-align: center;
+          }
+
           &:hover, &:focus, &.active {
-            background-color: var(--tb-sorting-bg);
-            color: var(--link-color);
+            background-color: var(--sidebar-hover-bg, rgba(255, 255, 255, 0.08));
+            color: var(--sidebar-active-color, #fff);
           }
         }
       }
