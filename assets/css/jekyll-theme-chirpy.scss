@@ -350,5 +350,32 @@ details.spoiler-answer {
     font-family: var(--bs-font-monospace, monospace);
     color: #ffffff;
     word-break: break-all;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 0.25rem;
+
+    code {
+      color: #3dd5f3;
+    }
+
+    .btn-copy-answer {
+      border: none;
+      background: transparent;
+      color: var(--bs-gray-400, #adb5bd);
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+      font-size: 0.85rem;
+      border-radius: 0.2rem;
+      transition: color 0.2s, background-color 0.2s;
+
+      &:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
   }
 }

@@ -79,7 +79,12 @@ tshark -r investigation.pcap -Y "http.request.method == POST"
 
 <details class="spoiler-answer">
   <summary>Reveal Answer</summary>
-  <div class="answer-content"><code>10.0.0.15</code></div>
+  <div class="answer-content">
+    <code>10.0.0.15</code>
+    <button type="button" class="btn-copy-answer" onclick="navigator.clipboard.writeText('10.0.0.15'); this.querySelector('i').className='fas fa-check text-success'; setTimeout(()=> this.querySelector('i').className='far fa-copy', 2000)" title="Copy to clipboard">
+      <i class="far fa-copy"></i>
+    </button>
+  </div>
 </details>
 
 ---
@@ -95,7 +100,12 @@ tshark -r investigation.pcap -Y "http.request.method == POST"
 
 <details class="spoiler-answer">
   <summary>Reveal Answer</summary>
-  <div class="answer-content"><code>malware_payload.exe</code></div>
+  <div class="answer-content">
+    <code>malware_payload.exe</code>
+    <button type="button" class="btn-copy-answer" onclick="navigator.clipboard.writeText('malware_payload.exe'); this.querySelector('i').className='fas fa-check text-success'; setTimeout(()=> this.querySelector('i').className='far fa-copy', 2000)" title="Copy to clipboard">
+      <i class="far fa-copy"></i>
+    </button>
+  </div>
 </details>
 
 ---

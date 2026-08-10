@@ -77,7 +77,12 @@ iocs:
 
 <details class="spoiler-answer">
   <summary>Reveal Answer</summary>
-  <div class="answer-content"><code>192.168.1.105</code></div>
+  <div class="answer-content">
+    <code>192.168.1.105</code>
+    <button type="button" class="btn-copy-answer" onclick="navigator.clipboard.writeText('192.168.1.105'); this.querySelector('i').className='fas fa-check text-success'; setTimeout(()=> this.querySelector('i').className='far fa-copy', 2000)" title="Copy to clipboard">
+      <i class="far fa-copy"></i>
+    </button>
+  </div>
 </details>
 
 ---
@@ -91,7 +96,12 @@ iocs:
 
 <details class="spoiler-answer">
   <summary>Reveal Answer</summary>
-  <div class="answer-content"><code>cmd_shell.aspx</code></div>
+  <div class="answer-content">
+    <code>cmd_shell.aspx</code>
+    <button type="button" class="btn-copy-answer" onclick="navigator.clipboard.writeText('cmd_shell.aspx'); this.querySelector('i').className='fas fa-check text-success'; setTimeout(()=> this.querySelector('i').className='far fa-copy', 2000)" title="Copy to clipboard">
+      <i class="far fa-copy"></i>
+    </button>
+  </div>
 </details>
 
 ---
