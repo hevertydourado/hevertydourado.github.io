@@ -180,37 +180,97 @@ a {
 /* Artifacts / IOC Highlight Box */
 .callout-ioc,
 .callout-artifact {
-  background-color: rgba(13, 110, 253, 0.08);
+  background-color: rgba(13, 110, 253, 0.05);
+  border: 1px solid rgba(13, 110, 253, 0.2);
   border-left: 4px solid #0d6efd;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  border-radius: 0 0.375rem 0.375rem 0;
+  padding: 1.25rem;
+  margin: 1.75rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
   .callout-title {
-    font-weight: 600;
-    color: #0d6efd;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #3d8bfd;
+    margin-bottom: 0.85rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.02);
+    font-size: 0.875rem;
+
+    th {
+      border-bottom: 1px solid rgba(13, 110, 253, 0.3);
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      padding: 0.6rem 0.75rem;
+    }
+
+    td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
   }
 }
 
 /* MITRE ATT&CK Section Box */
 .callout-mitre {
-  background-color: rgba(220, 53, 69, 0.08);
+  background-color: rgba(220, 53, 69, 0.05);
+  border: 1px solid rgba(220, 53, 69, 0.2);
   border-left: 4px solid #dc3545;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  border-radius: 0 0.375rem 0.375rem 0;
+  padding: 1.25rem;
+  margin: 1.75rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
   .callout-title {
-    font-weight: 600;
-    color: #dc3545;
-    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #ea868f;
+    margin-bottom: 0.85rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .table {
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.02);
+    font-size: 0.875rem;
+
+    th {
+      border-bottom: 1px solid rgba(220, 53, 69, 0.3);
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      padding: 0.6rem 0.75rem;
+    }
+
+    td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+/* Custom subtle scrollbar for mobile table overflow */
+.table-responsive {
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
   }
 }
 
