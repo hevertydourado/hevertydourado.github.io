@@ -75,7 +75,10 @@ iocs:
    tshark -r brave-investigation.pcap -Y "http.request" -T fields -e ip.src | sort | uniq -c
    ```
 
-**Answer:** `192.168.1.105`
+<details class="spoiler-answer">
+  <summary>Reveal Answer</summary>
+  <div class="answer-content"><code>192.168.1.105</code></div>
+</details>
 
 ---
 
@@ -86,7 +89,10 @@ iocs:
    `http.request.method == "POST" and http.request.uri contains "upload"`
 2. Inspect the HTTP payload stream to locate the `filename` attribute in the Content-Disposition header.
 
-**Answer:** `cmd_shell.aspx`
+<details class="spoiler-answer">
+  <summary>Reveal Answer</summary>
+  <div class="answer-content"><code>cmd_shell.aspx</code></div>
+</details>
 
 ---
 

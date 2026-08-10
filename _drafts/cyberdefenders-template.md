@@ -77,7 +77,10 @@ iocs:
 tshark -r investigation.pcap -Y "http.request.method == POST"
 ```
 
-**Answer:** `10.0.0.15`
+<details class="spoiler-answer">
+  <summary>Reveal Answer</summary>
+  <div class="answer-content"><code>10.0.0.15</code></div>
+</details>
 
 ---
 
@@ -90,7 +93,10 @@ tshark -r investigation.pcap -Y "http.request.method == POST"
    ```
 2. Locate suspicious child process spawned under `explorer.exe`:
 
-**Answer:** `malware_payload.exe`
+<details class="spoiler-answer">
+  <summary>Reveal Answer</summary>
+  <div class="answer-content"><code>malware_payload.exe</code></div>
+</details>
 
 ---
 
