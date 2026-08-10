@@ -8,9 +8,19 @@ tags: [cyberdefenders, dfir, network-forensics, memory-forensics, easy]
 pin: false
 math: true
 mermaid: true
-image:
-  path: /assets/img/posts/cyberdefenders-[lab-slug]/cover.webp
-  alt: CyberDefenders [Lab Name] Write-Up
+mitre_attack:
+  - tactic: Initial Access
+    technique_id: T1190
+    technique_name: Exploit Public-Facing Application
+    details: Exploit attempt detected on web server endpoint
+  - tactic: Execution
+    technique_id: T1059.001
+    technique_name: PowerShell
+    details: Obfuscated PowerShell execution via CMD child process
+  - tactic: Defense Evasion
+    technique_id: T1027
+    technique_name: Obfuscated Files or Information
+    details: Base64 encoded payload executed in memory
 ---
 
 ## Challenge Overview
@@ -33,16 +43,7 @@ image:
 
 ---
 
-<div class="callout-mitre">
-<div class="callout-title"><i class="fas fa-shield-alt"></i> MITRE ATT&CK Matrix Mapping</div>
-
-| Tactic | Technique ID | Technique Name | Details / Observed Behavior |
-| :--- | :--- | :--- | :--- |
-| **Initial Access** | `T1190` | Exploit Public-Facing Application | Exploit attempt detected on web server endpoint |
-| **Execution** | `T1059.001` | PowerShell | Obfuscated PowerShell execution via CMD child process |
-| **Defense Evasion** | `T1027` | Obfuscated Files or Information | Base64 encoded payload executed in memory |
-
-</div>
+{% include mitre-matrix.html %}
 
 ---
 

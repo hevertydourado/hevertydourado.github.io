@@ -1,0 +1,52 @@
+{% comment %}
+  MITRE ATT&CK Dynamic Matrix Renderer
+  Usage in post front matter:
+  mitre_attack:
+    - tactic: Initial Access
+      technique_id: T1190
+      technique_name: Exploit Public-Facing Application
+      details: Exploit attempt detected on web server
+{% endcomment %}
+
+{% if page.mitre_attack and page.mitre_attack.size > 0 %}
+<div class="callout-mitre mb-4">
+  <div class="callout-title">
+    <i class="fas fa-shield-alt me-1"></i> MITRE ATT&CK Matrix Mapping
+  </div>
+  <div class="table-responsive">
+    <table class="table table-dark table-striped table-hover align-middle mb-0">
+      <thead>
+        <tr>
+          <th>Tactic</th>
+          <th>Technique ID</th>
+          <th>Technique Name</th>
+          <th>Observed Behavior / Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in page.mitre_attack %}
+          {% assign tech_parts = item.technique_id | split: '.' %}
+          {% assign base_tech = tech_parts[0] %}
+          {% if tech_parts.size > 1 %}
+            {% assign mitre_url = "https://attack.mitre.org/techniques/" | append: base_tech | append: "/" | append: tech_parts[1] | append: "/" %}
+          {% else %}
+            {% assign mitre_url = "https://attack.mitre.org/techniques/" | append: base_tech | append: "/" %}
+          {% endif %}
+          <tr>
+            <td>
+              <span class="badge bg-danger text-uppercase px-2 py-1">{{ item.tactic }}</span>
+            </td>
+            <td>
+              <a href="{{ mitre_url }}" target="_blank" rel="noopener noreferrer" class="badge bg-secondary font-monospace text-decoration-none">
+                <i class="fas fa-external-link-alt me-1 small"></i>{{ item.technique_id }}
+              </a>
+            </td>
+            <td class="fw-bold">{{ item.technique_name }}</td>
+            <td class="text-muted small">{{ item.details }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}

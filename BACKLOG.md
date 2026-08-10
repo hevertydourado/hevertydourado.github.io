@@ -14,10 +14,10 @@ This document tracks upcoming features, enhancements, and tasks for [blog.vigly.
 - [x] **DFIR & IOC Custom Callouts (Item 2):** CSS callout boxes for IOCs, hashes, and artifact highlights.
 - [x] **Giscus Discussion System:** Configured Giscus in `_config.yml` with GitHub Discussions setup guide in README.
 - [x] **Social Preview Cards (Open Graph / Item 5):** Open Graph image fallbacks, `og:image` and 1200x630 resolution metadata for LinkedIn sharing.
+- [x] **MITRE ATT&CK Dynamic Matrix:** Component `_includes/mitre-matrix.html` mapping YAML front matter to auto-generated MITRE ATT&CK technique links.
 
 ---
 
 ## 📋 Backlog Queue
 
-- [ ] **MITRE ATT&CK Dynamic Matrix:** Interactive/styled component to render MITRE ATT&CK tactics & techniques per lab.
 - [ ] **Analytics Integration:** Setup Cloudflare or Google Analytics for reader tracking.
