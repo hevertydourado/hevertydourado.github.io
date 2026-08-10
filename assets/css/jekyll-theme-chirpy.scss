@@ -172,3 +172,47 @@ a {
     display: none !important;
   }
 }
+
+/* Fix Chirpy v7 theme mode dropdown toggle in sidebar */
+#sidebar {
+  .sidebar-bottom {
+    .dropup {
+      .btn {
+        padding: 0.375rem 0.5rem;
+        color: var(--sidebar-active-color);
+        border: none;
+        background: transparent;
+        font-size: 1rem;
+        box-shadow: none;
+        
+        &:hover {
+          color: var(--sidebar-hover-color);
+        }
+
+        i {
+          font-size: 1rem;
+        }
+      }
+
+      .dropdown-menu {
+        font-size: 0.85rem;
+        background-color: var(--main-bg);
+        border-color: var(--main-border-color);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+        .dropdown-item {
+          color: var(--text-color);
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.375rem 0.75rem;
+
+          &:hover, &:focus, &.active {
+            background-color: var(--tb-sorting-bg);
+            color: var(--link-color);
+          }
+        }
+      }
+    }
+  }
+}
