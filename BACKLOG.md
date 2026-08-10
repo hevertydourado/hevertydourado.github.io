@@ -11,7 +11,7 @@ This document tracks upcoming features, enhancements, and tasks for [blog.vigly.
 - [x] **Language & URL Slugs:** English site configuration and post URL slug standardization.
 - [x] **CyberDefenders Template:** Post template in `_drafts/cyberdefenders-template.md` without emojis.
 - [x] **Dedicated Write-Ups Tab:** `/writeups/` tab with dynamic lab counter and list.
-- [ ] **DFIR & IOC Custom Callouts (Item 2):** CSS callout boxes for IOCs, hashes, and artifact highlights.
+- [x] **DFIR & IOC Custom Callouts (Item 2):** CSS callout boxes for IOCs, hashes, and artifact highlights.
 
 ---
 
