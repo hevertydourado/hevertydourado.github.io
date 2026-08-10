@@ -47,7 +47,7 @@ social:
 avatar: /assets/img/favicons/avatar.png
 
 # Default Open Graph social sharing image fallback
-social_preview_image: /assets/img/posts/haproxy-wazuh/balanco-de-carga-wazuh.webp
+social_preview_image: /assets/img/default/preview.png
 
 # Site Verification Settings
 webmaster_verifications:
