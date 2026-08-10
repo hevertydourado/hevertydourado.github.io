@@ -19,7 +19,7 @@ Em ambientes de segurança da informação, a alta disponibilidade e a escalabil
 
 ---
 
-## 🛠️ Setup e Arquitetura
+## Setup e Arquitetura
 
 Para essa demonstração, utilizaremos a seguinte arquitetura:
 
@@ -36,11 +36,11 @@ _Estrutura do Cluster Wazuh com HAProxy Load Balancer_
 
 ---
 
-## ⚙️ Configuração do HAProxy
+## Configuração do HAProxy
 
 Existem diversas formas de instalar o HAProxy a depender do seu sistema operacional (ou via Docker / PPA). No nosso caso, instalaremos pelo gerenciador de pacotes (`dnf`) do Amazon Linux.
 
-> ℹ️ Todos os comandos a seguir estão sendo executados com permissões de usuário `root`.
+> Todos os comandos a seguir estão sendo executados com permissões de usuário `root`.
 
 ### 1. Instalação e Habilitação
 
@@ -69,7 +69,7 @@ nano /etc/haproxy/haproxy.cfg
 
 Adicione o seguinte conteúdo ao arquivo:
 
-```cfg
+```haproxy
 global
   chroot /var/lib/haproxy
   user haproxy
@@ -119,13 +119,13 @@ backend wazuh_reporting
   server worker2 <ENDERECO_MANAGER_WORKER_2>:1514 check
 ```
 
-> 💡 Os parâmetros `<ENDERECO_MANAGER_[...]>` podem ser informados tanto por endereço IP quanto por FQDN/DNS.
+> Os parâmetros `<ENDERECO_MANAGER_[...]>` podem ser informados tanto por endereço IP quanto por FQDN/DNS.
 
-> ⚠️ **Importante:** Para que o **HAProxy Helper** funcione corretamente com o Wazuh, o algoritmo de balanceamento deve obrigatoriamente ser `leastconn`.
+> **Importante:** Para que o **HAProxy Helper** funcione corretamente com o Wazuh, o algoritmo de balanceamento deve obrigatoriamente ser `leastconn`.
 
 ---
 
-## 🔒 Configurando o HAProxy Helper (com HTTPS)
+## Configurando o HAProxy Helper (com HTTPS)
 
 O HAProxy Helper utiliza a **Dataplane API** para que a comunicação entre o Wazuh Manager e o HAProxy aconteça de forma dinâmica, permitindo que o cluster faça atualizações de configuração conforme necessário.
 
@@ -192,7 +192,7 @@ haproxy:
     reload_strategy: custom
 ```
 
-> ⚠️ Lembre-se de ajustar os caminhos de `tls_certificate`, `tls_key` e credenciais (`name` e `password`) que serão utilizadas na autenticação.
+> Lembre-se de ajustar os caminhos de `tls_certificate`, `tls_key` e credenciais (`name` e `password`) que serão utilizadas na autenticação.
 
 ### 3. Iniciando os Serviços e Testando
 
@@ -213,7 +213,7 @@ curl -k -X GET --user wazuh:wazuh https://localhost:6443/v2/info
 
 ---
 
-## 🖥️ Configurando o Wazuh Manager Master
+## Configurando o Wazuh Manager Master
 
 No servidor **Manager Master**, edite o arquivo `ossec.conf` em `/var/ossec/etc/ossec.conf` e adicione o bloco `<haproxy_helper>` dentro da tag `<cluster>`:
 
@@ -243,7 +243,7 @@ No servidor **Manager Master**, edite o arquivo `ossec.conf` em `/var/ossec/etc/
 </cluster>
 ```
 
-> 📌 **Parâmetros:**
+> **Parâmetros:**
 > - `<haproxy_address>`: IP do servidor Load Balancer (HAProxy).
 > - `<haproxy_user>` / `<haproxy_password>`: Credenciais do Dataplane API.
 > - `<haproxy_cert>`: Certificado gerado no Load Balancer e copiado para o servidor Manager.
@@ -268,7 +268,7 @@ _Validação de logs confirmando o sucesso da comunicação do HAPHelper com a A
 
 ---
 
-## 🎁 Bônus: Autostart do Dataplane API no Systemd
+## Bônus: Autostart do Dataplane API no Systemd
 
 Para garantir que o Dataplane API inicie automaticamente caso o servidor do HAProxy seja reiniciado:
 
@@ -308,15 +308,15 @@ Para garantir que o Dataplane API inicie automaticamente caso o servidor do HAPr
 
 ---
 
-## 🎯 Conclusão
+## Conclusão
 
 A configuração do **HAProxy** para balanceamento de carga no Wazuh habilitando o **HAProxy Helper via HTTPS** garante uma infraestrutura resiliente, escalável e de fácil manutenção. A integração entre a Dataplane API e o Wazuh Manager permite adicionar e remover nós do cluster de forma dinâmica sem interrupção na coleta de eventos.
 
-Fique à vontade para deixar dúvidas ou sugestões nos comentários ou entrar em contato via LinkedIn/GitHub!
+Fique à vontade para deixar dúvidas ou sugestões nos comentários ou entrar em contato via LinkedIn/GitHub.
 
 ---
 
-## 📚 Referências
+## Referências
 
 - [Wazuh Server Cluster (HAProxy Documentation)](https://documentation.wazuh.com/)
 - [HAProxy Data Plane API Releases](https://github.com/haproxytech/dataplaneapi/releases)
