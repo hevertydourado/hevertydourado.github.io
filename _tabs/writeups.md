@@ -45,12 +45,3 @@ Welcome to the **DFIR & Threat Hunting Write-Ups** repository. This index catego
   <i class="fas fa-info-circle me-2"></i> No write-ups published yet. New CyberDefenders challenge walkthroughs are posted weekly!
 </div>
 {% endif %}
-
----
-
-## Filter by Category
-
-- [Network Forensics]({{ '/categories/network-forensics/' | relative_url }})
-- [Memory Forensics]({{ '/categories/memory-forensics/' | relative_url }})
-- [Disk Forensics]({{ '/categories/disk-forensics/' | relative_url }})
-- [Endpoint Security]({{ '/categories/endpoint/' | relative_url }})
