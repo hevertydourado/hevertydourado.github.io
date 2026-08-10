@@ -1,39 +1,50 @@
-# Chirpy Starter
+<!-- markdownlint-disable-next-line -->
+<div align="center">
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+  # D0ur4tt0 - Cybersecurity Blog
 
-A minimal, ready-to-use template for creating a blog with the [**Chirpy**][chirpy] Jekyll theme. Get up and running in minutes with all critical files pre-configured.
+  Blog dedicado a postagens técnicas sobre segurança defensiva (Blue Team, DFIR, SOC e SIEM).
 
-## Why This Starter Exists
+  [![Live Blog](https://img.shields.io/badge/Website-blog.vigly.io-blue)](https://blog.vigly.io)
+  [![GitHub](https://img.shields.io/badge/GitHub-hevertydourado-181717?logo=github)](https://github.com/hevertydourado)
 
-When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subset of theme files (`_data`, `_layouts`, `_includes`, `_sass`, `assets`) and limited `_config.yml` options from the gem. As a result, users cannot enjoy the full out-of-the-box experience that Chirpy offers.
+</div>
 
-To unlock all features, the following files must be present in your Jekyll site:
+## 📌 Sobre o Projeto
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
-```
+Este repositório contém o código-fonte do **D0ur4tt0 Cybersecurity Blog**, hospedado via GitHub Pages no endereço [blog.vigly.io](https://blog.vigly.io).
 
-This starter bundles those files from the latest **Chirpy** release along with a [CD][CD] workflow, so you can start writing immediately.
+O blog tem como objetivo compartilhar conhecimentos práticos, análises de incidentes, tutoriais e pesquisas focadas em **Segurança Defensiva / Blue Team**.
 
-## Usage
+## 🛠️ Tecnologias Utilizadas
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+- **Jekyll**: Gerador de site estático
+- **Tema**: [Chirpy Jekyll Theme (Gem v7.6.0)](https://github.com/cotes2020/jekyll-theme-chirpy)
+- **Hospedagem**: GitHub Pages + Cloudflare DNS
+- **Linguagens/Ferramentas**: Markdown, Liquid, Sass/CSS, JavaScript
 
-## Contributing
+## 🚀 Executando Localmente
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+Para rodar o blog localmente na sua máquina:
 
-## License
+1. **Clonar o repositório:**
+   ```bash
+   git clone https://github.com/hevertydourado/hevertydourado.github.io.git
+   cd hevertydourado.github.io
+   ```
 
-This work is published under [MIT][mit] License.
+2. **Instalar as dependências:**
+   ```bash
+   bundle install
+   ```
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+3. **Iniciar o servidor local:**
+   ```bash
+   bundle exec jekyll serve
+   ```
+   Acesse a aplicação em `http://localhost:4000`.
+
+## 📄 Licença
+
+Este projeto é disponibilizado sob a licença [MIT](LICENSE).
+
