@@ -69,7 +69,7 @@ nano /etc/haproxy/haproxy.cfg
 
 Adicione o seguinte conteúdo ao arquivo:
 
-```haproxy
+```cfg
 global
   chroot /var/lib/haproxy
   user haproxy
