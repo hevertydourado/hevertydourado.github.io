@@ -55,6 +55,29 @@ To publish a new CyberDefenders or DFIR lab write-up:
 
 ---
 
+## 💬 Comments & Discussions (Giscus)
+
+The blog utilizes **[Giscus](https://giscus.app/)** powered by **GitHub Discussions** to enable technical discussions on posts and write-ups.
+
+### Prerequisites to Enable Giscus on GitHub:
+1. Ensure the repository is **public**.
+2. Go to **Settings** > **General** > **Features** on GitHub and check **Discussions**.
+3. Install the **[Giscus GitHub App](https://github.com/apps/giscus)** for this repository.
+4. Create a discussion category named `Comments` (Announcements type).
+
+The parameters in `_config.yml` are pre-configured:
+```yaml
+comments:
+  provider: giscus
+  giscus:
+    repo: hevertydourado/hevertydourado.github.io
+    mapping: pathname
+    input_position: bottom
+    lang: en
+```
+
+---
+
 ## Local Development
 
 To run the blog locally:

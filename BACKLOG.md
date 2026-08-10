@@ -12,12 +12,12 @@ This document tracks upcoming features, enhancements, and tasks for [blog.vigly.
 - [x] **CyberDefenders Template:** Post template in `_drafts/cyberdefenders-template.md` without emojis.
 - [x] **Dedicated Write-Ups Tab:** `/writeups/` tab with dynamic lab counter and list.
 - [x] **DFIR & IOC Custom Callouts (Item 2):** CSS callout boxes for IOCs, hashes, and artifact highlights.
+- [x] **Giscus Discussion System:** Configured Giscus in `_config.yml` with GitHub Discussions setup guide in README.
 
 ---
 
 ## 📋 Backlog Queue
 
-- [ ] **Giscus Discussion System:** Enable GitHub Discussions integration for comments under Write-Ups.
 - [ ] **Social Preview Cards (Open Graph / Item 5):** Automated preview images for LinkedIn sharing.
 - [ ] **MITRE ATT&CK Dynamic Matrix:** Interactive/styled component to render MITRE ATT&CK tactics & techniques per lab.
 - [ ] **Analytics Integration:** Setup Cloudflare or Google Analytics for reader tracking.
