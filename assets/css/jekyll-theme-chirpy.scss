@@ -1,0 +1,174 @@
+---
+---
+
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+@use "sass:math";
+
+/* append your custom style below */
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 400; /* Peso normal para o corpo do texto */
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600; /* Peso semi-bold para títulos */
+}
+
+a {
+  color: #1b31af;
+  text-decoration: none;
+  &:hover {
+    text-shadow: 0 0 2px #182361;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  25% {
+    opacity: 0;
+  }
+}
+
+// #avatar {
+//   display: block;
+//   width: 6.5rem;
+//   height: 6.5rem;
+//   overflow: hidden;
+//   border-radius: 50%; /* Garante um formato circular */
+//   box-shadow: var(--avatar-border-color) 0 0 0 2px;
+//   transform: translateZ(0); /* Fix para zoom no Safari */
+// }
+
+// #avatar img {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover; /* Corta a imagem para encaixar */
+//   object-position: center; /* Centraliza a imagem */
+//   transition: transform 0.5s;
+// }
+
+#avatar {
+  display: block;
+  width: 6.5rem;
+  height: 6.5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: var(--avatar-border-color) 0 0 0 2px;
+  transform: translateZ(0);
+}
+
+#avatar img {
+  width: 100%;
+  height: auto; /* Mantém a proporção correta */
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s;
+}
+
+#avatar img:hover {
+  transform: scale(1.2);
+}
+
+
+@function random_range($min, $max) {
+  $rand: math.random();
+  $random_range: $min + math.floor($rand * (($max - $min) + 1));
+  @return $random_range;
+}
+
+#animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+
+  @keyframes animate {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.5;
+      border-radius: 0;
+    }
+    100% {
+      transform: translateY(-1200px) rotate(720deg);
+      opacity: 0;
+      border-radius: 50%;
+    }
+  }
+
+  @media all and (min-width: 1200px) {
+    .animation-circle {
+      position: absolute;
+      left: var(--circle-left);
+      bottom: -300px;
+      display: block;
+      background: var(--circle-background);
+      width: var(--circle-side-length);
+      height: var(--circle-side-length);
+      animation: animate 25s linear infinite;
+      animation-duration: var(--circle-time);
+      animation-delay: var(--circle-delay);
+      pointer-events: none;
+
+      @for $i from 0 through 50 {
+        &:nth-child(#{$i}) {
+          --circle-left: #{random_range(0%, 100%)};
+          --circle-background: rgba(#{random_range(0, 255)}, #{random_range(0, 255)}, #{random_range(0, 255)}, 0.06);
+          --circle-side-length: #{random_range(20px, 200px)};
+          --circle-time: #{random_range(10s, 45s)};
+          --circle-delay: #{random_range(0s, 25s)};
+        }
+      }
+    }
+  }
+
+  @media all and (max-width: 1199px) {
+    .animation-circle {
+      display: none;
+    }
+  }
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+#matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; // Garante que fique sobre tudo
+  mix-blend-mode: screen; // Modo de mesclagem para efeito de sobreposição
+
+  canvas {
+    opacity: 0.1; // Opacidade bem suave
+  }
+
+  /* Quando o tema estiver em dark mode */
+  [data-mode="dark"] #matrix-rain {
+    canvas {
+      opacity: 0.1;
+    }
+  }
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
