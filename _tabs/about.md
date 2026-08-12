@@ -5,11 +5,11 @@ icon: fas fa-info-circle
 order: 5
 ---
 
-Welcome to my personal cybersecurity engineering and defensive security blog.
+Welcome to my personal cybersecurity engineering and technical blog.
 
 I am **Heverty Buges** (online as **D0ur4tt0**), an Information Security Analyst and Cyber Defense Specialist with experience across enterprise security operations, detection engineering, and incident response.
 
-This blog serves as a technical knowledge base for hands-on lab write-ups (CyberDefenders, HTB Sherlocks), SIEM/EDR engineering architectures, threat hunting walkthroughs, and SOC automation scripts.
+This blog serves as my public engineering log, technical knowledge base, and research laboratory. Here, I document hands-on lab write-ups (CyberDefenders, HTB Sherlocks), SIEM/EDR detection architectures, application security research, and custom SOC automation tooling.
 
 ---
 
@@ -23,23 +23,36 @@ This blog serves as a technical knowledge base for hands-on lab write-ups (Cyber
 
 ## Technical Stack & Core Competencies
 
-- **Detection Engineering & SIEM:** Wazuh (custom correlation rules, decoders, SCA baseline policies), Snort, threat modeling, and MITRE ATT&CK mapping.
-- **Endpoint Security & EDR/XDR:** Telemetry analysis and incident triage using SentinelOne and enterprise EDR solutions.
+- **Detection & AppSec Engineering:** Threat modeling, correlation rules specification, custom decoders/SCA baselines, web application security, and MITRE ATT&CK mapping.
+- **Endpoint Security & EDR/XDR:** Telemetry analysis, behavior detection, and incident triage using SentinelOne and enterprise EDR platforms.
 - **Network & DFIR Forensics:** Deep-packet inspection with Wireshark/TShark, memory forensics, and artifact analysis.
-- **SOC Automation:** Python and Go (Golang) scripting to automate repetitive security workflows and evidence collection.
-- **Security Operations & Vulnerability Management:** Multi-client CSOC/MSSP experience, vulnerability remediation driving, and compliance validation.
+- **SOC Automation & Tooling:** Python and Go (Golang) scripting to automate repetitive SOC workflows, evidence collection, and detection testing.
+- **Security Operations & Vulnerability Management:** Enterprise and multi-tenant CSOC/MSSP experience, vulnerability remediation, and compliance validation.
 
 ---
 
-## Education & Certifications
+## 🎯 Continuous Learning & Certification Roadmap
 
-- **ISC2 Certified in Cybersecurity (CC):** [Verified Credly Badge](https://www.credly.com/badges/286d78b7-1b33-48b3-ac29-f695c2db0f1c)
-  <div class="my-3">
-    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="286d78b7-1b33-48b3-ac29-f695c2db0f1c" data-share-badge-host="https://www.credly.com"></div>
-    <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
-  </div>
+My professional focus centers on deepening specialization in **Detection Engineering**, **Application Security (AppSec)**, and **Offensive Web Security**:
+
+- **Active Certifications:**
+  - **ISC2 Certified in Cybersecurity (CC):** [Verified Credly Badge](https://www.credly.com/badges/286d78b7-1b33-48b3-ac29-f695c2db0f1c)
+    <div class="my-3">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="286d78b7-1b33-48b3-ac29-f695c2db0f1c" data-share-badge-host="https://www.credly.com"></div>
+      <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+    </div>
+  - **English Proficiency:** C1 Advanced (EF SET Certified - 70/100)
+
+- **Technical Development Roadmap:**
+  - **Detection & Engineering:** CyberDefenders Defender Practitioner (CDP)
+  - **Application Security:** Certified Secure Software Lifecycle Professional (CSSLP)
+  - **Offensive Security & Web Exploitation:** Burp Suite Certified Practitioner (BSCP)
+
+---
+
+## Education
+
 - **Associate of Science (AS):** Cyber Defense — *FIAP*
-- **English Proficiency:** C1 Advanced (EF SET Certified - 70/100)
 
 ---
 
