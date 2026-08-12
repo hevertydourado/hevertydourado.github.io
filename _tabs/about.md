@@ -33,7 +33,7 @@ This blog serves as a technical knowledge base for hands-on lab write-ups (Cyber
 
 ## Education & Certifications
 
-- **Postgraduate Degree:** Software Architecture, Data Science & Cybersecurity — *PUCPR (Pontifícia Universidade Católica do Paraná)*
+- **ISC2 Certified in Cybersecurity (CC):** [Verified Credly Badge](https://www.credly.com/badges/286d78b7-1b33-48b3-ac29-f695c2db0f1c)
 - **Associate of Science (AS):** Cyber Defense — *FIAP*
 - **English Proficiency:** C1 Advanced (EF SET Certified - 70/100)
 
