@@ -1,5 +1,5 @@
 ---
-# the default layout is 'page'
+layout: page
 title: About
 icon: fas fa-info-circle
 order: 5
@@ -7,13 +7,13 @@ order: 5
 
 Welcome to my personal cybersecurity engineering and defensive security blog.
 
-I am **D0ur4tt0** (Heverty Dourado), a Cybersecurity Specialist focused on **Defensive Security, Threat Detection, Incident Response (DFIR), and Security Engineering**. 
+I am **Heverty Buges** (online as **D0ur4tt0**), an Information Security Analyst and Cyber Defense Specialist with experience across enterprise security operations, detection engineering, and incident response.
 
-This blog serves as a repository for technical write-ups, security architecture walkthroughs, threat hunting methodologies, and hands-on lab investigations.
+This blog serves as a technical knowledge base for hands-on lab write-ups (CyberDefenders, HTB Sherlocks), SIEM/EDR engineering architectures, threat hunting walkthroughs, and SOC automation scripts.
 
 ---
 
-## 🛡️ CyberDefenders Profile & Achievements
+## CyberDefenders Profile & Achievements
 
 <div class="my-4 d-flex justify-content-start align-items-center">
   <script src="https://cyberdefenders.org/p/heverty/badge"></script>
@@ -21,16 +21,26 @@ This blog serves as a repository for technical write-ups, security architecture 
 
 ---
 
-## 🎯 Focus Areas & Expertise
+## Technical Stack & Core Competencies
 
-- **Blue Team Operations & Incident Response (DFIR)**: Memory forensics, PCAP network traffic analysis, and disk artifact analysis.
-- **Threat Detection & SIEM / SOAR**: Elastic Security, Wazuh Manager cluster architecture, HAProxy load balancing, and custom rule development (Sigma / YARA).
-- **Security Infrastructure Engineering**: Hardening Linux/Cloud environments, high-availability architecture, and automated threat monitoring.
+- **Detection Engineering & SIEM:** Wazuh (custom correlation rules, decoders, SCA baseline policies), Snort, threat modeling, and MITRE ATT&CK mapping.
+- **Endpoint Security & EDR/XDR:** Telemetry analysis and incident triage using SentinelOne and enterprise EDR solutions.
+- **Network & DFIR Forensics:** Deep-packet inspection with Wireshark/TShark, memory forensics, and artifact analysis.
+- **SOC Automation:** Python and Go (Golang) scripting to automate repetitive security workflows and evidence collection.
+- **Security Operations & Vulnerability Management:** Multi-client CSOC/MSSP experience, vulnerability remediation driving, and compliance validation.
 
 ---
 
-## 🔗 Connect & Links
+## Education & Certifications
 
-- **GitHub**: [github.com/hevertydourado](https://github.com/hevertydourado)
-- **LinkedIn**: [linkedin.com/in/heverty](https://www.linkedin.com/in/heverty)
-- **CyberDefenders**: [cyberdefenders.org/p/heverty/](https://cyberdefenders.org/p/heverty/)
+- **Postgraduate Degree:** Software Architecture, Data Science & Cybersecurity — *PUCPR (Pontifícia Universidade Católica do Paraná)*
+- **Associate of Science (AS):** Cyber Defense — *FIAP*
+- **English Proficiency:** C1 Advanced (EF SET Certified - 70/100)
+
+---
+
+## Connect & Links
+
+- **LinkedIn:** [linkedin.com/in/heverty](https://www.linkedin.com/in/heverty)
+- **GitHub:** [github.com/hevertydourado](https://github.com/hevertydourado)
+- **CyberDefenders:** [cyberdefenders.org/p/heverty](https://cyberdefenders.org/p/heverty/)
