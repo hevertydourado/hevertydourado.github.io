@@ -39,7 +39,7 @@ My professional focus centers on deepening specialization in **Detection Enginee
   - **ISC2 Certified in Cybersecurity (CC):** [Verified Credly Badge](https://www.credly.com/badges/286d78b7-1b33-48b3-ac29-f695c2db0f1c)
     <div class="my-3">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="286d78b7-1b33-48b3-ac29-f695c2db0f1c" data-share-badge-host="https://www.credly.com"></div>
-      <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+      <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
     </div>
   - **English Proficiency:** C1 Advanced (EF SET Certified - 70/100)
 
